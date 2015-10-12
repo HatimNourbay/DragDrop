@@ -1,0 +1,13 @@
+c:\users\hatim\documents\visual studio 2013\Projects\DragDrop2\DragDrop2\bin\Debug\DragDrop2.exe.config
+c:\users\hatim\documents\visual studio 2013\Projects\DragDrop2\DragDrop2\bin\Debug\DragDrop2.exe
+c:\users\hatim\documents\visual studio 2013\Projects\DragDrop2\DragDrop2\bin\Debug\DragDrop2.pdb
+c:\users\hatim\documents\visual studio 2013\Projects\DragDrop2\DragDrop2\obj\Debug\DragDrop2.csprojResolveAssemblyReference.cache
+c:\users\hatim\documents\visual studio 2013\Projects\DragDrop2\DragDrop2\obj\Debug\MainWindow.baml
+c:\users\hatim\documents\visual studio 2013\Projects\DragDrop2\DragDrop2\obj\Debug\MainWindow.g.cs
+c:\users\hatim\documents\visual studio 2013\Projects\DragDrop2\DragDrop2\obj\Debug\App.g.cs
+c:\users\hatim\documents\visual studio 2013\Projects\DragDrop2\DragDrop2\obj\Debug\DragDrop2_MarkupCompile.cache
+c:\users\hatim\documents\visual studio 2013\Projects\DragDrop2\DragDrop2\obj\Debug\DragDrop2.g.resources
+c:\users\hatim\documents\visual studio 2013\Projects\DragDrop2\DragDrop2\obj\Debug\DragDrop2.Properties.Resources.resources
+c:\users\hatim\documents\visual studio 2013\Projects\DragDrop2\DragDrop2\obj\Debug\DragDrop2.csproj.GenerateResource.Cache
+c:\users\hatim\documents\visual studio 2013\Projects\DragDrop2\DragDrop2\obj\Debug\DragDrop2.exe
+c:\users\hatim\documents\visual studio 2013\Projects\DragDrop2\DragDrop2\obj\Debug\DragDrop2.pdb
