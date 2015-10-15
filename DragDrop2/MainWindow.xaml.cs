@@ -1,11 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
+using System.Drawing.Imaging;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
 using System.Windows.Data;
+using System.Windows.Controls;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
@@ -25,7 +28,9 @@ namespace DragDrop2
 
         TransformedBitmap bitmap;
 
-        Dictionary<int,BitmapImage> dictionaryOfImages = new Dictionary<int,BitmapImage>();
+        Dictionary<double,System.Drawing.Image> dictionaryOfImages = new Dictionary<double,System.Drawing.Image>();
+
+        Dictionary<int, int> RemainingSize = new Dictionary<int, int>();
 
         private List<BitmapImage> myListImages = null;
 
@@ -57,35 +62,66 @@ namespace DragDrop2
         private void FrameDrop_Drop(object sender, DragEventArgs e)
         {
             string filename = (string)((DataObject)e.Data).GetFileDropList()[0];
+
+
             
             //MyListImages.Add(bit);
             if (IsImageExtension(filename))
             {
                 NumberImages++;
+                
                 var uriN = new Uri(filename);
                 Console.WriteLine(uriN);
                 BitmapImage bit = new BitmapImage(uriN);
+                Bitmap bit2;
+
+                System.Windows.Controls.Image Finalima = new System.Windows.Controls.Image();
+
+                System.Drawing.Image ima = System.Drawing.Image.FromFile(filename);
 
                 var x = bit.Width;
                 var y = bit.Height;
                 var ratio = x / y;
 
-
-                Image ima = new Image();
-
-                if (x > this.Width)
+                if (dictionaryOfImages != null)
                 {
-                    newHeightDone = this.Width/ratio;
-                    bitmap = new TransformedBitmap(bit, new ScaleTransform(this.Width / bit.PixelWidth, newHeightDone / bit.PixelHeight));
-                    ima.Source = bitmap;
+                    foreach (var images in dictionaryOfImages)
+                    {
+                        ImageResizeClass.ResizeImage(images.Value,800, 600);
+                    }
                 }
 
 
-                ima.Source = bit;               
+                newHeightDone = this.Width / ratio;
+                //bitmap = new TransformedBitmap(bit, new ScaleTransform(this.Width / bit.PixelWidth, newHeightDone / bit.PixelHeight));
+                var bonjour = ImageResizeClass.ResizeImage(ima, Convert.ToInt32(this.Width), Convert.ToInt32(newHeightDone));
+                //var bit = new BitmapImage(bonjour);
+                bit2 = new Bitmap(bonjour);
 
-                CanvasDrop.Children.Add(ima);
+                using (MemoryStream memory = new MemoryStream())
+                {
+                    bit2.Save(memory, ImageFormat.Png);
+                    memory.Position = 0;
+                    BitmapImage bitmapImage = new BitmapImage();
+                    bitmapImage.BeginInit();
+                    bitmapImage.StreamSource = memory;
+                    bitmapImage.CacheOption = BitmapCacheOption.OnLoad;
+                    bitmapImage.EndInit();
+
+
+                    Finalima.Source = bitmapImage;
+                    dictionaryOfImages.Add(ratio, bonjour);
+                    CanvasDrop.Children.Add(Finalima);
+
+                }
+
+
             }
         }
+
+
+
+        
 
 
         private static string[] _validExtensions = { ".jpg", ".bmp", ".gif", ".png" }; //  etc
